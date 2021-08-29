@@ -1,0 +1,388 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+}
+.header {
+  min-height: 56px;
+  transition: min-height 0.3s;
+}
+.header__menu {
+  font-size: 32px;
+  margin: 10px 10px 10px 75%;
+  display: inline-block;
+  padding: 10px 15px;
+  min-height: 44px;
+  min-width: 44px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.nav {
+  min-height: 70px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 150px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 10px #acacac;
+  width: 100%;
+}
+#drawer .nav.open {
+  left: 0;
+}
+.nav__list .nav__item {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0 20px;
+  margin-top: 10px;
+}
+.nav__item a {
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 15px;
+  color: #646464;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.nav__item a:hover {
+  color: #ee8f00;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  background-image: url("../public/images/heros/hero-image_4.jpg");
+  width: 100%;
+  min-height: 85vh;
+  background-position: center center;
+  background-color: black;
+  background-size: cover;
+}
+
+.hero .hero__inner {
+  text-align: center;
+  margin: 0 auto;
+}
+.hero .hero__inner .hero__title {
+  color: white;
+  font-weight: 700;
+  font-size: 40px;
+  text-transform: capitalize;
+  text-shadow: 5px 5px 8px #181717;
+}
+.hero__desc {
+  color: #ffffff;
+  font-weight: 300;
+  font-size: 30px;
+  text-shadow: 5px 5px 8px #757575;
+}
+
+h2 {
+  text-align: center;
+  margin: 40px 0 20px 0;
+}
+main {
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+main .about__us {
+  width: 100%;
+  padding: 0 20px;
+  margin-top: 80px;
+}
+main .about__us .about__img {
+  width: 100%;
+}
+main .about__us .about__img img {
+  width: 100%;
+  margin: 20px auto;
+}
+main .about__us .about__text {
+  width: 100%;
+  margin-top: 20px;
+}
+main .about__us .about__title {
+  text-align: left;
+  font-weight: 400;
+  text-transform: capitalize;
+  font-size: 30px;
+}
+main .about__us .about__decs {
+  font-size: 15px;
+  line-height: 25px;
+  padding: 0 20px;
+}
+.about__btn button {
+  margin-top: 30px;
+  padding: 7px 15px;
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: 4px;
+  color: #ffffff;
+  background-color: #f09000;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.about__btn button:hover {
+  opacity: 0.8;
+}
+.content {
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+}
+.content h2 {
+  margin-bottom: 20px;
+}
+#card__list {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.card__item {
+  box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.card__img img {
+  object-fit: cover;
+  height: 250px;
+  width: 100%;
+  transition: 0.3s;
+  border-radius: 5px 5px 0 0;
+}
+.card__img img:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.card__content {
+  padding: 10px 25px;
+  margin-bottom: 20px;
+}
+.card__content .card__title a {
+  text-decoration: none;
+  padding: 10px 15px;
+  min-width: 44px;
+  min-height: 44px;
+  transition: 0.3s;
+  color: #fd2f2f;
+}
+.card__content .card__title h2 a:hover {
+  color: #ff8717;
+  font-size: 19px;
+}
+.card__city {
+  display: flex;
+  font-size: 17px;
+}
+.card__rating_value {
+  color: #ec9512;
+  font-weight: bold;
+}
+main .about__us .about__decs p,
+.card__decs {
+  text-align: justify;
+  margin-top: 12px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 8; /*number of lines to show*/
+  -webkit-box-orient: vertical;
+}
+
+.card__detail__header .card__detail__poster img {
+  margin: 40px auto 20px auto;
+  border-radius: 5px;
+  display: grid;
+  width: 100%;
+}
+
+h2.card__detail__title {
+  color: #fd2f2f;
+  margin-top: 10px;
+  font-size: 25px;
+}
+h2.card__detail__title:hover {
+  color: #ff8717;
+}
+.card__detail__city p {
+  margin-top: 5px;
+  font-size: 15px;
+}
+.card__detail__address p,
+p.card__detail__categories {
+  font-size: 12px;
+}
+
+.card__detail__desc p {
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: justify;
+  line-height: 20px;
+  margin-bottom: 40px;
+}
+.card__menus__categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 50px;
+}
+
+h4.label__menus {
+  font-size: 17px;
+}
+
+.menus__categories__food,
+.menus__categories__drink {
+  padding: 10px 5px 10px 5px;
+  box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.07);
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  margin-top: 20px;
+  display: grid;
+}
+.food__title h4,
+.drink__title h4 {
+  text-align: center;
+  color: #f09000;
+  margin: 5px;
+}
+.food__desc p,
+.drink__desc p {
+  text-align: center;
+  line-height: 20px;
+}
+
+.overview__title {
+  text-align: center;
+  margin-top: 85px;
+  margin-bottom: 35px;
+  font-size: 40px;
+  color: #bcbcbc;
+}
+/* sementara customer review masih berantakan */
+.card__customer__review {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  /* align-items: center; */
+}
+
+.customer__review__item {
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.09);
+  width: 220px;
+  display: grid;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.customer__review__item .review__name {
+  text-align: left;
+  font-size: 10px;
+  margin-bottom: 3px;
+}
+p.review_desc {
+  text-align: center;
+  font-size: 10px;
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.customer__review__item p.review__date {
+  text-align: right;
+  margin-top: 3px;
+  margin-bottom: -8px;
+  font-weight: 600;
+  color: #ee8f00;
+  font-size: 10px;
+  font-style: italic;
+  padding: 10px 0;
+}
+
+/* akhir card reveiw */
+
+/* akhir card detail */
+
+/* like */
+.like {
+  font-size: 18px;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background-color: #db0000;
+  color: white;
+  border: 0;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer {
+  background-color: #f09000;
+  padding: 1em;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+img:focus,
+a:focus,
+button:focus {
+  outline: 3px solid rgb(0, 119, 255);
+}
+.skip-link {
+  position: absolute;
+  top: -70px;
+  left: 0;
+  background-color: #eb7d00;
+  color: white;
+  display: inline-block;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+  z-index: 100;
+  transition: 0.3s;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+.skip-link:hover {
+  background-color: #fd2f2f;
+}

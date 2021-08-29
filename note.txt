@@ -1,0 +1,149 @@
+npm run start-dev : untuk menjalankan code 
+npm run build
+
+
+http://localhost:8080/
+langkah awal untuk menjalankan npm di project
+1. install node js
+2. buka folder project di code editor > pergi command line trus ketikkan npm -v (untuk mengetahui versi npm)
+3. ketikkan npm init (untuk menginisiasi project) > nantinya akan mengisi beberapa pertanyaan, dan ada file bernama index.js berfunsi sebagai entri point yang merupakan file yang pertama kali di akses ketika project dijalankan
+4. setelah inisiasi selesai akan secara otomatis terbentuk file package.json (jangan di ubah")
+
+
+===============  ## urutan memasang webpack  ##  ===============
+
+1. install webpack dan webpack cli ( npm install webpack --save-dev, npm install webpack-cli --save-dev ) atau bisa juga ditulis dengan short hand ( npm install webpack webpack-cli --save-dev )
+2. jika sudah berhasil di install pada berkas package.json pada devDependencies terdapat webpack dan webpack-cli 
+      "devDependencies": {
+          "webpack": "^4.43.0",
+          "webpack-cli": "^3.3.12",
+        }
+
+  Package webpack merupakan package inti dari webpack itu sendiri. Sedangkan package webpack-cli merupakan package yang digunakan untuk membantu kita menjalankan webpack melalui sebuah perintah (Command Line Interface). Pada CLI juga kita dapat memberikan argumen seperti menetapkan berkas webpack config atau mode dalam proses build.
+
+3. Untuk menjalankan webpack kita perlu menambahkan script dengan perintah webpack pada package.json
+
+      "scripts": {
+          "test": "echo \"Error: no test specified\" && exit 1",
+          "start": "http-server .",
+          "build": "webpack"
+      },
+  
+  Kita bisa menghapus script yang lainnya karena sudah tidak akan kita gunakan lagi. Sehingga sekarang berkas package.json akan tampak seperti ini: 
+
+      "scripts": {
+      "build": "webpack"
+    },
+
+4. jalankan script built dengan perintah "npm run build", dan pastikan entry point berada di src -> index.js, kalo etry point belum sesuai akan muncul error seperti ini: 
+
+    ERROR in Entry module not found: Error: Can't resolve './src' in 'C:\Users\Dicoding\Desktop\WebClock'
+
+5. jika sudah berhasil di build, di folder project akan ada tambhan folder bernama dist yang didalamnya terdapat file main.js ( dist > main.js )
+6. Karena kita sudah menggunakan webpack untuk membundel module. Kita dapat menggunakan perintah import pada src -> index.js dalam menggunakan package npm.
+
+    import $ from "jquery"; --> perintah import
+    import moment from "moment";  --> perintah import
+    
+    const displayTime = () => {
+        moment.locale("id");
+        $(".time").text(moment().format("LTS"));
+        $(".date").text(moment().format("LL"));
+    };
+    
+    const updateTime = () => {
+        displayTime();
+        setTimeout(updateTime, 1000)
+    };
+    
+    updateTime();
+
+
+7. Kemudian pada index.html, kita dapat menggantikan seluruh tag <script> yang ada dengan satu tag <script> yang ditujukan pada dist -> main.js. 
+
+    <script src="node_modules/moment/moment.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./index.js"></script>
+
+misal pemanggilannya seperti diatas bisa diganti dengan seperti dibawah ini:
+
+  <script src="./dist/main.js"></script>
+    
+8. lalu build ulang proyek dengan menjalankan perintah " npm run build " , Setelah build selesai dan menghasilkan berkas dist -> main.js yang baru, proyek WebClock seharusnya sudah bisa berjalan dengan baik ketika kita membuka berkas index.html.
+
+#NB: istilah ketika menjalankan perintah npm run build adalah bundle
+
+
+===============  ## membuat berkas konfigurasi  ##  ===============
+
+
+setelah memasang webpack ( ditunjukkan dengan adanya folder dist dalam folder proyek ), selanjutnya perlu membuat configurasi webpack dengan nama webpack.config.js pada folder root. keunguulannya jika membuat configurasi kita dapat menggunakan loader, namun loader tidak akan berfungsi jika belum membuat configurasi.
+
+
+1. buat file baru bernama webpack.config.js atau dengan nama lain dengan menambahkan argument --config misalkan webpack--config.config.js pada root folder proyek kita.
+2. perlu diingat didalam webpack Ada entry, output, loader, plugins dan mode, yang berfungsi menentukan perilaku webpack dalam melakukan tugasnya.
+ untuk konfigurasi awal, tentukan entry dan output pada webpack configuration. Caranya dengan tambahkan kode berikut pada berkas webpack.config.js.
+
+    const path = require("path");
+ 
+    module.exports = {
+        entry: "./src/index.js",
+        output: {
+            path: path.resolve(__dirname, "dist"),
+            filename: "bundle.js"
+        }
+    }
+
+pada nilai entry mekipun kita menetapkan nilainya namun kita tidak mengubah nilainya/nilainya masih standart yaitu sec -> index.js, namun pada nilai output kita mengubah penamaan berkas hasil bundel dari main.js ( nilai standart yang bebelumnya sudah dibuild) menjadi bundle.js. selanjutnya build ulang dengan menjalankan perintah 
+
+    npm run build
+
+maka akan terdapat berkas bundel baru bernama bundle.js pada folder dist. jika berkas main sudah tidak digunakan bisa dihapus, jangan lupa mengubah target berkas javascript yang dilampirkan pada index.html menjadi bundle.js.
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Clock Web</title>
+            <link rel="stylesheet" href="style.css">
+        </head>
+        <body>
+            <div class="clock">
+                <span class="time"></span>
+                <span class="date"></span>
+            </div>
+            <!-- <script src="./dist/main.js"></script> --> => main diganti bundle.js
+            <script src="./dist/bundle.js"></script> --> mengalami perubahan
+        </body>
+    </html>
+
+Pada saat proses bundle, coba kita lihat pada Terminal. Terdapat warning yang menunjukkan bahwa kita tidak menetapkan mode pada berkas webpack configuration. jika mode tidak ditetapkan nilai pada properti mode, maka nilai standar akan diterapkan yaitu "production", namun jika ingin menghilangkan warning, kita bisa menetapkan properti mode dengan nilai production. lalu coba jalankan kembali script build. maka warning properti mode tidak akan muncul pada terminal saat proses build.
+
+#NB: jangan terlalu banyak menggunakan package pihak ketiga yang dibawa hingga tahap production,  karena akan mempengaruhi ukuran berkas bundle.js sehingga berdampak pada performa web yang dibangun.
+
+
+#css loader
+
+
+menambahkan favicon di project dengan webpack
+
+install package dengan menjalan kan perintah berikut: "npm install --save-dev favicons favicons-webpack-plugin "
+2. konfigurasi menggunakan peritah dibawah ini
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+
+plugins: [
+  new FaviconsWebpackPlugin()
+]
+
+3. contoh penggunaan
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+
+...
+
+plugins: [
+  new FaviconsWebpackPlugin('/path/to/logo.png') // svg works too!
+]
+
+
+
+==========================
+enambahan otomasi testing masih error di unlike restorant

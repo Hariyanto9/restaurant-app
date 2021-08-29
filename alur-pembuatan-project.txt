@@ -1,0 +1,79 @@
+alur pembuatan project katalog restoran untuk submission 2
+1. membuat application shell, diawali dg membuat folder project dan intall npm dengan perintah "npm init --y"
+2. memasang dependencies sebagai berikut
+- @babel/core
+- @babel/preset-env
+- babel-loader
+- copy-webpack-plugin
+- css-loader
+- eslint
+- html-webpack-plugin
+- style-loader
+- webpack@4.x.x
+- webpack-cli@3.x.x
+- webpack-dev-server
+- webpack-merge
+
+dengan menggunakan perintah " npm install @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader eslint html-webpack-plugin style-loader webpack@4.x.x webpack-cli@3.x.x webpack-dev-server webpack-merge --save-dev " 
+
+perintah diatas akan memasang copy-webpack-plugin dan html-webpack-plugin versi terbaru:
+Versi terbaru tersebut tidak kompatibel dengan webpack v4.x.x, sehingga akan memunculkan error saat menjalankan````npm run start-dev````.
+
+
+TypeError: Cannot read property 'tap' of undefined
+
+    at HtmlWebpackPlugin.apply
+
+
+
+Gunakanlah copy-webpack-plugin versi 6 dan html-webpack-plugin versi 4.
+
+
+npm uninstall html-webpack-plugin copy-webpack-plugin --save-dev 
+
+
+npm install html-webpack-plugin@4.x.x copy-webpack-plugin@6.x.x --save-dev
+
+tunggu hingga instalasi selesai, selanjutnya install regenerator run time dg perintah " npm install regenerator-runtime ", maka tampilah di package.json seperti dibawah ini: 
+
+"devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^6.0.2",
+    "css-loader": "^3.6.0",
+    "eslint": "^7.3.1",
+    "html-webpack-plugin": "^4.3.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.0.9"
+  },
+  "dependencies": {
+    "regenerator-runtime": "^0.13.5"
+  }
+
+3. menerapkan code style menggunakan es linter menggunakan perintah " npx eslint --init ", dan jawab pertanyaannya seperti dibawah ini:
+
+Jawab pertanyaan yang diberikan ESLint. Bila Anda ragu dalam menjawabnya, Anda bisa mengikuti jawaban berikut.
+
+How would you like to use ESLint? -> To check, find problems, and enforce code style.
+What type of modules does your project use? -> JavaScript modules (import/export).
+Which framework does your project use? -> None of these.
+Does your project use TypeScript? -> N.
+Where does your code run? -> Browser, Node.
+How would you like to define a style for your project? -> Use a popular style guide.
+Which style guide do you want to follow? -> (Anda bebas memilih, sebagai contoh pilih AirBnB).
+What format do you want your config file to be in? -> JSON.
+Would you like to …… (rest of questions) -> Y.
+
+jika pemasangan berhasil maka akan otomatis ditambahkan satu file bernama " .eslintrc.json "
+
+4. melakukan konfigurasi webpack dengan membuat 3 file bernama webpack.common.js , webpack.dev.js, webpack.prod.js
+
+5. membuat application sheell, konfigurasi drawer, membuat url route sederhana denan membuat page dummy
+6. 
+
+========================================
+besok lanjut ke web manifest
